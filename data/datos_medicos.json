@@ -1,0 +1,29 @@
+[
+  {
+    "nombreDoctor": "Michael",
+    "apellidoDoctor": "Rojas",
+    "cedulaDoctor": "103589632256",
+    "especialidadDoctor": "Medicina interna",
+    "consultorioDoctor": "11",
+    "emailDoctor": "michael@gmail.com",
+    "numPacientesDoctor": "7"
+  }, 
+  {
+    "nombreDoctor": "Camilo",
+    "apellidoDoctor": "Manrique",
+    "cedulaDoctor": "10154896255",
+    "especialidadDoctor": "Veterinaria conductual",
+    "consultorioDoctor": "13",
+    "emailDoctor": "camilin@gmail.com",
+    "numPacientesDoctor": "14"
+  },
+  {
+    "nombreDoctor": "Natalia",
+    "apellidoDoctor": "Chaparro",
+    "cedulaDoctor": "1035896325",
+    "especialidadDoctor": "Farmacología veterinaria",
+    "consultorioDoctor": "18",
+    "emailDoctor": "nata@gmail.com",
+    "numPacientesDoctor": "3"
+  }  
+]

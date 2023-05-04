@@ -1,0 +1,18 @@
+[
+  {
+    "nombreMascota": "Luna",
+    "nombreDueño": "Ana",
+    "cedulaDueño": "1234567",
+    "edadMascota": "5 años",
+    "telefonoDueño": "3105678946",
+    "especialidad": "Veterinaria Conductual",
+    "medico": "Jorge"
+  }, 
+  {"nombreMascota": "Orion",
+  "nombreDueño": "Angela",
+  "cedulaDueño": "1589234567",
+  "edadMascota": "2 años",
+  "telefonoDueño": "310960525",
+  "especialidad": "Odontología veterinaria",
+  "medico": "Jesús"}
+]
