@@ -1,7 +1,7 @@
-let tablaMascotas = document.getElementById("tabla-mascotas");
-let cuerpoTabla = tablaMascotas.querySelector("tbody"); //Consultar un hijo del selector llamado
+/* let tablaMascotas = document.getElementById("tabla-mascotas");
+let cuerpoTabla = tablaMascotas.querySelector("tbody"); //Consultar un hijo del selector llamado */
 //console.log(cuerpoTabla);
-//!USANDO LISTAS
+/* //!USANDO LISTAS
 let nombeMascotas = ["Luna", "Lucas", "Oreo"];
 let nombreDueno = ["Ana", "Daniel", "Juan"];
 let cedulaDueno = ["1234567", "51834967", "89526325"];
@@ -169,14 +169,14 @@ for (let i = 0; i < listaMascotas.length; i++) {
 }
 
 //!CONSUMO DE UN JSON
+fetch(`../data/datos_mascotas.json`) //Solicitud a URL local o externa
+  .then((Response) => Response.json()) //respuesta y conversión a json
+  .then((data) => {
+    //data = objeto convertido ⏫
 
-fetch(`../data/datos_mascotas.json`)//Solicitud a URL local o externa
-  .then((Response) => Response.json()) //respuesta y conversión a json 
-  .then(data => { //data = objeto convertido ⏫   
-    
     for (let i = 0; i < data.length; i++) {
-      let mascota = data[i]; //Traemos cada objeto de cada posicion dentro del array y se almacenan en la variable mascota.   
-      
+      let mascota = data[i]; //Traemos cada objeto de cada posicion dentro del array y se almacenan en la variable mascota.
+
       //Se crea la fila y columnas
       let fila = cuerpoTabla.insertRow();
       let celdaNombreMascota = fila.insertCell();
@@ -195,4 +195,42 @@ fetch(`../data/datos_mascotas.json`)//Solicitud a URL local o externa
       celdaEspecialidad.textContent = mascota.especialidad;
       celdaMedico.textContent = mascota.medico;
     }
-  }).catch(error => console.log("error")); //control de errores
+  })
+  .catch((error) => console.log("error")); //control de errores */
+
+//! Usando una cookie
+let tablaMascotas = document.getElementById("tabla-mascotas");
+let cuerpoTabla = tablaMascotas.querySelector("tbody");
+const mascotasCookie = JSON.parse(obtenerCookies("mascotas"))
+
+
+for (let i = 0; i < mascotasCookie.length; i++) {
+  let mascota = mascotasCookie[i]; 
+  let fila = cuerpoTabla.insertRow();
+  let celdaNombreMascota = fila.insertCell();
+  let celdaNombreDueño = fila.insertCell();
+  let celdaCedulaDueño = fila.insertCell();
+  let celdaEdadMascota = fila.insertCell();
+  let celdaTelefonoDueño = fila.insertCell();
+  let celdaEspecialidad = fila.insertCell();
+  let celdaMedico = fila.insertCell();
+  celdaNombreMascota.textContent = mascota.nombreMascota;
+  celdaNombreDueño.textContent = mascota.nombreDueño;
+  celdaCedulaDueño.textContent = mascota.cedulaDueño;
+  celdaEdadMascota.textContent = mascota.edadMascota;
+  celdaTelefonoDueño.textContent = mascota.telefonoDueño;
+  celdaEspecialidad.textContent = mascota.especialidad;
+  celdaMedico.textContent = mascota.medico;  
+}
+
+
+function obtenerCookies(nombre) {
+  const cookies = document.cookie.split("; "); 
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i].split("="); 
+    if (cookie[0] === nombre) {
+      return decodeURIComponent(cookie[1]);      
+    }   
+  }
+  return "";
+}

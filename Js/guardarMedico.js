@@ -10,38 +10,44 @@ formularioMedicos.addEventListener("submit", (event) => {
     correoMedico: document.getElementById("correo").value,
     especialidadMedico: document.getElementById("especialidad").value,
     cedulaMedico: document.getElementById("cedula").value,
-  };  
+  };
   guardarCookies(datosMedico);
+  //?Mensaje para redirigir a nueva pestaña 
+  const confirmacion = confirm("¿Deseas ver los datos o seguir añadiendo doctores")
+    if (confirmacion) {
+        window.location.href ="./medicos.html"
+        
+    } else {
+        formularioMascotas.reset();  
+    }
 });
 
-
 function guardarCookies(medico) {
-    //las cookies antiguas
-    let datos = obtenerCookie("medicos"); //traer el nombre de la cookie
-    if (datos === "") {
-        datos = "[]";
-    }
-    //objeto
-    let medicosObjetos = []
-    medicosObjetos = JSON.parse(datos);
-    
-    medicosObjetos.push(medico);
-    const jsonDatos = JSON.stringify(medicosObjetos)
-    cambiarCookie("medicos", jsonDatos)
+  //las cookies antiguas
+  let datos = obtenerCookie("medicos"); //traer el nombre de la cookie
+  if (datos === "") {
+    datos = "[]";
+  }
+  //objeto
+  let medicosObjetos = [];
+  medicosObjetos = JSON.parse(datos);
 
+  medicosObjetos.push(medico);
+  const jsonDatos = JSON.stringify(medicosObjetos);
+  cambiarCookie("medicos", jsonDatos);
 }
 
 function obtenerCookie(nombre) {
-    const cookies = document.cookie.split("; ");
-    for (let i = 0; i < cookies.length; i++) {
-        const cookie = cookies[i].split("=");
-        if (cookie[0] === nombre) {
-            return decodeURIComponent(cookie[1]);
-        }
+  const cookies = document.cookie.split("; ");
+  for (let i = 0; i < cookies.length; i++) {
+    const cookie = cookies[i].split("=");
+    if (cookie[0] === nombre) {
+      return decodeURIComponent(cookie[1]);
     }
-    return "";
+  }
+  return "";
 }
 
 function cambiarCookie(nombre, valor) {
-    document.cookie = `${nombre}=${encodeURIComponent(valor)}`;
+  document.cookie = `${nombre}=${encodeURIComponent(valor)}`;
 }

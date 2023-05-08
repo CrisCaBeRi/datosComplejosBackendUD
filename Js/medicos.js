@@ -1,4 +1,5 @@
-//Extración de los elementos de la tabala
+//! USO LISTAS 
+/* //Extración de los elementos de la tabala
 let tablaMedicos = document.getElementById("tabla-medicos");
 let cuerpoTabla = tablaMedicos.querySelector("tbody");
 
@@ -30,9 +31,11 @@ for (let i = 0; i < nombreDoctor.length; i++) {
   celdaConsultorio.textContent = consultorioDoctor[i];
   celdaEmail.textContent = emailDoctor[i];
   celdaNumPacientes.textContent = numPacientesDoctor[i];
-}
+} */
 
 //!USO DE OBJETOS
+/*let tablaMedicos = document.getElementById("tabla-medicos");
+let cuerpoTabla = tablaMedicos.querySelector("tbody");
 //Lista que lamacena los datos para ser recorridos | esta lista también se utiliza para recorrer los objetos creados con la clase.
 const medicos = [
   {
@@ -62,9 +65,13 @@ const medicos = [
     emailDoctor: "andy@gmail.com",
     numPacientesDoctor: "3",
   },
-];
+]; */
 
 //!USO DE CLASES
+/* 
+let tablaMedicos = document.getElementById("tabla-medicos");
+let cuerpoTabla = tablaMedicos.querySelector("tbody");
+
 class Medico {
   constructor(
     nombreDoctor,
@@ -127,9 +134,12 @@ for (let i = 0; i < medicos.length; i++) {
   celdaConsultorio.textContent = med.consultorioDoctor;
   celdaEmail.textContent = med.emailDoctor;
   celdaNumPacientes.textContent = med.numPacientesDoctor;
-}
+} */
 
 //! CONSUMO DE JSON
+/* 
+let tablaMedicos = document.getElementById("tabla-medicos");
+let cuerpoTabla = tablaMedicos.querySelector("tbody");
 
 fetch('../data/datos_medicos.json')
   .then((Response) => Response.json())
@@ -156,4 +166,49 @@ fetch('../data/datos_medicos.json')
       celdaEmail.textContent = med.emailDoctor;
       celdaNumPacientes.textContent = med.numPacientesDoctor;
     }
-  }).catch(error => console.log("error")); //control de errores
+  }).catch(error => console.log("error")); //control de errores 
+  */
+
+
+  //! Uso de cookies 
+
+const tablaMedicos = document.getElementById("tabla-medicos");
+const cuerpoTabla = tablaMedicos.querySelector("tbody");
+
+const medicosCookie = JSON.parse(obtenerCookie("medicos"))
+
+for(let i=0; i< medicosCookie.length; i++){
+  let med = medicosCookie[i]; //Asignación de variable a  posicion del array - objeto para consultar propiedades.
+  //Se establece una fila
+  console.log(med)
+  let fila = cuerpoTabla.insertRow();
+  //Se establecen los campos de columnas
+  let celdaNombre = fila.insertCell();
+  let celdaApellido = fila.insertCell();
+  let celdaCedula = fila.insertCell();
+  let celdaEspecialidad = fila.insertCell();
+  let celdaConsultorio = fila.insertCell();
+  let celdaEmail = fila.insertCell();
+  let celdaTelefono = fila.insertCell();
+  let celdaNumPacientes = fila.insertCell();
+  //Se llenan las columnas
+  celdaNombre.textContent = med.nombreMedico;
+  celdaApellido.textContent = med.apellidoMedico;
+  celdaCedula.textContent = med.cedulaMedico;
+  celdaEspecialidad.textContent = med.especialidadMedico;
+  celdaConsultorio.textContent = med.consultorioMedico;
+  celdaEmail.textContent = med.correoMedico;
+  celdaTelefono.textContent = med.telefonoMedico
+  celdaNumPacientes.textContent = med.numPacientesMedico;
+}
+
+function obtenerCookie(nombre) {
+    const cookies = document.cookie.split("; ")
+    for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].split("=");
+        if (cookie[0] === nombre) {
+            return decodeURIComponent(cookie[1]);
+        }
+    }
+    return "";
+}

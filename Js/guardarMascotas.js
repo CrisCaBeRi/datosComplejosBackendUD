@@ -10,6 +10,14 @@ formularioMascotas.addEventListener('submit', (event) => {
         especialidad: document.getElementById('especialidad').value
     }
     guardarCookies(datosMascota);
+    //?ventana de confirmación para llevar a un html diferente
+    const confirmacion = confirm("¿Deseas ver los datos o seguir añadiendo mascotas")
+    if (confirmacion) {
+        window.location.href ="./mascotas.html"
+        
+    } else {
+        formularioMascotas.reset();  
+    }
 })
 
 function guardarCookies(mascota) {
